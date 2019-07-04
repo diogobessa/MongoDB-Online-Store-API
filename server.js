@@ -36,7 +36,6 @@ router.get('/getStock', (req, res) => {
     Stock.
     find().
     exec((err, data) => {
-        console.log('stock data', data);
         return res.json({ sucess: true, data: data})
     })
 })
@@ -89,7 +88,6 @@ router.get('/getProducts', (req, res) => {
         ],
         (err, results) => {
             return res.json({sucess: true, data: results});
-            console.log(results[5]);
         }
     )
 });
@@ -116,36 +114,5 @@ router.post('/putProduct', (req, res) => {
     });
     
 });
-
-/*
-router.get('/getData', (req, res) => {
-    Data.find((err, data) => {
-        console.log(data);
-        return res.json({ sucess: true, data: data });
-    });
-});
-
-router.post('/putData', (req, res) => {
-    let data = new Data();
-
-    const { id, message } = req.body;
-
-    if(!id && id !== 0 || !message){
-        return res.json({
-            success: false,
-            error: 'invalid inputs'
-        });
-    }
-
-    data.message = message;
-    data.id = id;
-    data.save((err) => {
-        if (err) return res.json({success: false, error: err});
-        return res.json({ success: true});
-    });
-
-});*/
-
 app.use('/api', router);
-
 app.listen(port, () => console.log(`Hello on port ${port}`));
